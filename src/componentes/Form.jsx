@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { pressButtonEnter } from "./Utilities";
 
 
-export default function Form({todoHandler}) {
+export default function Form({addTodo}) {
 
   pressButtonEnter("#outlined-basic", "#submit");
 
@@ -13,7 +13,8 @@ export default function Form({todoHandler}) {
   const todoCreate = (text) => {
     const todoObj = {text: text, id:id};
     setId(id + 1);
-    todoHandler(todoObj);
+    addTodo(todoObj);
+    document.getElementById("outlined-basic").value = null;
   }
 
   return (
