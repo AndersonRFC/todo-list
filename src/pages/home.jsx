@@ -8,8 +8,7 @@ export default function Home() {
   const [todos, setTodos] = useState([]);
 
   const todoHandler = (todo) => {
-    console.log(todo);
-    //setTodos([...todos, todo]);
+    setTodos([...todos, todo]);
   };
 
   return (
@@ -21,7 +20,7 @@ export default function Home() {
       <List sx={{ marginTop: "1em" }}>
         {todos.map((todo) => (
           <div style={{ marginTop: "1em" }}>
-            <TodoItem />
+            <TodoItem todo={todo}/>
           </div>
         ))}
       </List>

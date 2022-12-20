@@ -9,9 +9,9 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Paper } from "@mui/material";
 
-export default function TodoItem() {
+export default function TodoItem({todo}) {
   return (
-    <Paper>
+    <Paper style={{ padding: "0.5em 0em"}}>
       <ListItem
         secondaryAction={
           <IconButton edge="end" aria-label="comments">
@@ -24,7 +24,7 @@ export default function TodoItem() {
           <ListItemIcon>
             <Checkbox edge="start" tabIndex={-1} disableRipple />
           </ListItemIcon>
-          <ListItemText primary={`Line item`} />
+          <ListItemText primary={todo.text} />
         </ListItemButton>
       </ListItem>
     </Paper>

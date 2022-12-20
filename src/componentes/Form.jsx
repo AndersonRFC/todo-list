@@ -8,6 +8,13 @@ export default function Form({todoHandler}) {
   pressButtonEnter("#outlined-basic", "#submit");
 
   const [text, setText] = useState(null);
+  const [id, setId] = useState(0);
+
+  const todoCreate = (text) => {
+    const todoObj = {text: text, id:id};
+    setId(id + 1);
+    todoHandler(todoObj);
+  }
 
   return (
     <div>
@@ -20,7 +27,7 @@ export default function Form({todoHandler}) {
             onChange={(e) => setText(e.target.value)}
             fullWidth
           />
-          <Button id="submit" variant="text" onClick={() => todoHandler(text)}>
+          <Button id="submit" variant="text" onClick={() => todoCreate(text)}>
             Add
           </Button>
         </div>
