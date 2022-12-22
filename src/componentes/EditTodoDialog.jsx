@@ -6,21 +6,20 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import { TextField } from '@mui/material';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function EditTodoDialog({open, dialogHandler}) {
-//   const [open, setOpen] = React.useState(false);
+export default function EditTodoDialog({open, dialogHandler, todo, editTodo}) {
 
-//   const handleClickOpen = () => {
-//     setOpen(true);
-//   };
+  const[editedText, setEditedText] = React.useState(todo.text);
 
-//   const handleClose = () => {
-//     setOpen(false);
-//   };
+  const textHandler = () => {
+      editTodo(todo.id, editedText)
+      dialogHandler();
+  }
 
   return (
       
@@ -30,17 +29,17 @@ export default function EditTodoDialog({open, dialogHandler}) {
         keepMounted
         onClose={dialogHandler}
         aria-describedby="alert-dialog-slide-description"
+        fullWidth
       >
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle>{"Editando Tarefa"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+            <TextField defaultValue={editedText} fullWidth onChange={ (e) => setEditedText(e.target.value)}/>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button >Disagree</Button>
-          <Button >Agree</Button>
+          <Button onClick={dialogHandler}>Cancelar</Button>
+          <Button onClick={textHandler}>OK</Button>
         </DialogActions>
       </Dialog>
   );

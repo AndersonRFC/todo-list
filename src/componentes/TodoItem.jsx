@@ -9,7 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Paper } from "@mui/material";
 import EditTodoDialog from "./EditTodoDialog";
 
-export default function TodoItem({todo, deleteTodo}) {
+export default function TodoItem({todo, deleteTodo, editTodo}) {
   
   const [openDialog, setOpenDialog] = React.useState(false);
   
@@ -19,7 +19,7 @@ export default function TodoItem({todo, deleteTodo}) {
 
   return (
     <>
-    <EditTodoDialog open={openDialog}/>
+    <EditTodoDialog editTodo={editTodo} open={openDialog} dialogHandler={dialogHandler} todo={todo}/>
     <Paper style={{ padding: "0.5em 0em"}} dialogHandler={dialogHandler}>
       <ListItem
         secondaryAction={

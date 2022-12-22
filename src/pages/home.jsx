@@ -16,6 +16,19 @@ export default function Home() {
     setTodos(filtered);
   }
 
+  const editTodo = (id, editedText) => {
+    var novoArray = [...todos];
+
+    for(var i in novoArray){
+      if(novoArray[i].id == id){
+        novoArray[i].text = editedText;
+      }
+    }
+
+    // novoArray.splice(id, 1, {text:editedText, id:id});
+    setTodos(novoArray);
+  }
+
   return (
     <Container
       maxWidth="xs"
@@ -25,7 +38,7 @@ export default function Home() {
       <List sx={{ marginTop: "1em" }}>
         {todos.map((todo) => (
           <div key={todo.id} style={{ marginTop: "1em" }}>
-            <TodoItem todo={todo} deleteTodo={deleteTodo}/>
+            <TodoItem editTodo={editTodo} todo={todo} deleteTodo={deleteTodo}/>
           </div>
         ))}
       </List>
